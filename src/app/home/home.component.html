@@ -1,0 +1,29 @@
+<h1>Posts recents</h1>
+
+<div *ngIf="loading" style="width: 100%; height: 100vh" class="d-flex justify-content-center align-items-center flex-column">
+  <h3>Les ressources sont encours de chargement</h3>
+  <div class="spinner-border text-info" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<div *ngIf="!loading">
+  <div *ngFor="let post of posts " class="card my-3" style="color: black; border: black;" >
+    <div class="row g-0">
+      <div class="col-md-4">
+       <img src="{{ post.image_url }}" alt="post image" />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"> {{ post.title }} </h5>
+          <p class="card-text">{{ post.resume  }}</p>
+          <hr>
+          <p class="card-text">{{ post.content  }}</p>
+          <p class="card-text"><small class="text-muted">Derniere mise a jour</small> {{ post.created_at }} </p>
+          <a routerLink="posts/{{post.id}}" class="btn btn-dark btn-outline-light">Voir</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

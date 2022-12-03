@@ -1,0 +1,8 @@
+{
+  "/v1/*": {
+  "target": "http://103143.bloggy.ecole-it.devigne.space",
+  "secure": false,
+  "logLevel": "debug",
+  "changeOrigin": true
+  }
+}

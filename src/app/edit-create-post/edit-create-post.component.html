@@ -1,0 +1,36 @@
+<h3>Creer un poste</h3>
+<div class="form">
+<form #formData = "ngForm" (ngSubmit) = "createPost(formData)">
+  <div class="form-group my-1">
+    <label for="" class="form-label">Titre du poste</label>
+    <input type="text" #title="ngModel" name="title" class="form-control" placeholder="le titre" required ngModel>
+    <p class="text-danger" *ngIf="title.touched && title.errors">Erreur de validation</p>
+  </div>
+  <div class="form-group my-1">
+    <label for="" class="form-label">Auteur du poste</label>
+    <select name="author" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" #author = "ngModel" required ngModel >
+      <option selected>choisir un auteur</option>
+      <option *ngFor="let auth of authors" [ngValue]="auth.id">{{  auth.full_name }}</option>
+    </select>
+  </div>
+  <div class="form-group my-1">
+    <label for="" class="form-label">Image du poste</label>
+    <input type="text" #file = "ngModel" name="file"  class="form-control" placeholder="URL de l'image" ngModel required>
+    <p class="text-danger" *ngIf="file.touched && file.invalid">Erreur de validation</p>
+  </div>
+  <div class="form-group my-1">
+    <label for="" class="form-label">description du poste</label>
+    <input type="text" #desc = "ngModel" name="desc"  class="form-control" placeholder="la description" ngModel required>
+    <p class="text-danger" *ngIf="desc.touched && desc.invalid">Erreur de validation</p>
+  </div>
+  <div class="form-group my-1">
+    <label for="" class="form-label">contenu du poste</label>
+    <textarea #content = "ngModel" id="" cols="30" name="content"  rows="5" placeholder="le contenu ici !"
+    class="form-control" ngModel required></textarea>
+    <p class="text-danger" *ngIf="content.touched && content.invalid">Erreur de validation</p>
+  </div>
+  <div class="form-group my-1">
+    <button type="submit" class="btn btn-primary btn-block btn-lg" style="width: 100%" >Poster</button>
+  </div>
+</form>
+</div>
