@@ -1,5 +1,8 @@
 # LaurineBloggy
 
+Simple begiiner project with angualar
+simply run ng server --open after clonnig this repot and ur done
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.1.
 
 ## Development server
