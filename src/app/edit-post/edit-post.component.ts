@@ -4,6 +4,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-edit-post',
   templateUrl: './edit-post.component.html',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class EditPostComponent implements OnInit {
  post: any
+ authors: any
  loading = true
  id: any
 
@@ -20,6 +22,7 @@ export class EditPostComponent implements OnInit {
   * @param formData 
   * @return void
   */
+
   editPost(formData: any){
     let data = {
       title: formData.value.title,
@@ -27,8 +30,20 @@ export class EditPostComponent implements OnInit {
       content: formData.value.content,
       created_at: DatePipe,
       image_url: formData.value.file,
-      author_id: this.post.author_id,
+      author_id: formData.value.author,
     }
+
+    //! this is not clean i know. dont mention it. pls
+
+    if(data.title.length === 0  ||
+       data.resume.length === 0
+       || data.content.length === 0
+       || data.content.url === 0){
+
+        alert('les champs n\'ont pas été modifier');
+        return
+       }
+
 
     this.post = this.http.put("http://103143.bloggy.ecole-it.devigne.space/posts/"+this.id, data)
     .subscribe((response) => {alert('enregistrer avec success')
@@ -44,6 +59,12 @@ export class EditPostComponent implements OnInit {
     this.post = this.http.get("http://103143.bloggy.ecole-it.devigne.space/posts/"+this.id)
     .subscribe( (res) => {
       this.post = res
+      this.loading = false
+    })
+
+    this.authors = this.http.get("http://103143.bloggy.ecole-it.devigne.space/authors/")
+    .subscribe( (res) => {
+      this.authors = res
       this.loading = false
     })
   }

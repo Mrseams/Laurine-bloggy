@@ -12,35 +12,40 @@
 <form #formData = "ngForm" (ngSubmit) = "editPost(formData)">
   <div class="form-group my-1">
     <label for="" class="form-label">Titre du poste</label>
-    <input type="text" #title="ngModel" name="title" class="form-control" placeholder="le titre" value="{{ post.title}}" required ngModel>
+    <input type="text" #title="ngModel" name="title" class="form-control" placeholder="le titre" value="{{post.title}}" required ngModel>
     <p class="text-danger" *ngIf="title.touched && title.errors">Erreur de validation</p>
   </div>
+
   <div class="form-group my-1">
     <label for="" class="form-label">Auteur du poste</label>
     <select name="author" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" 
     #author = "ngModel" required ngModel >
-      <option selected>choisir un auteur</option>
-      <option value="{{ post.author_id}}">"{{ post.author_id}}"</option>
+      <option selected="true">choisir un auteur</option>
+      <option *ngFor="let author of authors" [ngValue]="author.id">{{  author.full_name }}</option>
     </select>
   </div>
+
   <div class="form-group my-1">
     <label for="" class="form-label">Image du poste</label>
     <input type="text" #file = "ngModel" name="file"  class="form-control" value="{{ post.image_url}}"
     placeholder="URL de l'image" ngModel required>
     <p class="text-danger" *ngIf="file.touched && file.invalid">Erreur de validation</p>
   </div>
+
   <div class="form-group my-1">
     <label for="" class="form-label">description du poste</label>
     <input type="text" #desc = "ngModel" name="desc"  class="form-control" value="{{ post.resume}}"
      placeholder="la description" ngModel required>
     <p class="text-danger" *ngIf="desc.touched && desc.invalid">Erreur de validation</p>
   </div>
+
   <div class="form-group my-1">
     <label for="" class="form-label">contenu du poste</label>
     <textarea #content = "ngModel" id="" cols="30" name="content"  rows="5" placeholder="le contenu ici !"
-    class="form-control" ngModel required> {{ post.content}} </textarea>
+    class="form-control" ngModel required value="{{ post.content}}">  </textarea>
     <p class="text-danger" *ngIf="content.touched && content.invalid">Erreur de validation</p>
   </div>
+
   <div class="form-group my-1">
     <button type="submit" class="btn btn-primary btn-block btn-lg" style="width: 100%" >Enregister</button>
   </div>
